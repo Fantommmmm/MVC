@@ -7,14 +7,14 @@
 // echo '<pre>';
 //     print_r($produits);
 // echo '</pre>';
-if(isset($_SESSION['panier']))
-{
+// if(isset($_SESSION['panier']))
+// {
 
-    echo '<pre>';
-        var_dump($_SESSION['panier']);
-    echo '</pre>';
+//     echo '<pre>';
+//         var_dump($_SESSION['panier']);
+//     echo '</pre>';
   
-}
+// }
 
 ?>
 <div class="container mt-5">

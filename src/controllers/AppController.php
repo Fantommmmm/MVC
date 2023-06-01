@@ -187,16 +187,36 @@ class AppController
             }
             $_SESSION['panier'] = $panier;
         }
-     header('location:' . BASE . 'cart/view');
+     header('location:' . BASE );
      exit;
 
+    }
+
+    public static function substractCart()
+    {
+       if(!empty($_GET['id']))
+       {
+        $id = $_GET['id'];
+        $panier = $_SESSION['panier'];
+        if(!empty($panier[$id]) && $panier[$id] > 1 )
+        {
+            $panier[$id]--;
+        } else {
+            unset($panier[$id]);
+        }
+        $_SESSION['panier'] = $panier;
+       }
+       
+       header('location:' . BASE . 'cart/view');
+       exit;
+     
     }
 
     public static function viewCart()
     {
        
     $detailPanier = [];
-        $totalPanier = 0;
+    $totalPanier = 0;
     if(isset($_SESSION['panier']))
     {
         $panier = $_SESSION['panier'];
@@ -212,11 +232,31 @@ class AppController
             $totalPanier += $produit['price'] * $quantity;
         }
 
+        }
+        include(VIEWS . 'app/panier.php');
     }
+
+
+    public static function removeCart()
+    {
+        $panier = $_SESSION['panier'];
+        if(!empty($_GET['id']))
+        {
+            $id = $_GET['id'];
+            unset($panier[$id]);
+        }
+        $_SESSION['panier'] = $panier;
+        header('location:' . BASE . 'cart/view');
+    } 
+
+    public static function deleteCart()
+    {
+        unset($_SESSION['panier']);
     
     
-    
-    
-    include(VIEWS."app/panier.php" ) ;
+        header('location:' . BASE . 'cart/view');
+            exit;
     }
+
+    
 }
