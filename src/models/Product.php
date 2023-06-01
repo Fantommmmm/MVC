@@ -42,4 +42,7 @@ class Product extends Db
         $response = self::getDb()->prepare($request);
         return $response->execute($id);
     }
+
+    
+    
 }

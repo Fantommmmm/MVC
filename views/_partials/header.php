@@ -37,6 +37,8 @@
               <a class="dropdown-item" href="<?= BASE . 'produit/gestion'; ?>">Gestion produit</a>
               <a class="dropdown-item" href="<?= BASE . 'produit/ajout'; ?>">Ajouter produit</a>
               <a class="dropdown-item" href="<?= BASE . 'user/gestion'; ?>">Gestion Utilisateurs</a>
+              <a class="dropdown-item" href="<?= BASE . 'produit/category'; ?>">Ajouter Catégorie</a>
+              <a class="dropdown-item" href="<?= BASE . 'produit/gestioncategory'; ?>">Gestion Catégorie</a>
 <?php endif; ?>
           </div>
         </li>

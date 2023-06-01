@@ -12,6 +12,7 @@ class AppController
 
     public static function ajoutProduit()
     {   
+        $categories = Category::findAllCategory();
         //  on vérifie que l'utilsateur n'est pas connecté ou que il est connecté mais il n'est pas admin
         if(!isset($_SESSION['user']) || $_SESSION['user']['role'] != "ROLE_ADMIN")
         {
@@ -59,7 +60,7 @@ class AppController
                  //*créer un tableau de donnée avec les données a envoyer en BDD 
                   $data = [
                     'name' => $_POST['name'],
-                    'category' => $_POST['category'],
+                    'category' => $_POST['id_category'],
                     'image' => $nameImage,
                     'price' => $_POST['price'],
                     'description' => $_POST['description']
@@ -81,12 +82,15 @@ class AppController
     public static function gestionProduit()
     {
         Verif::admin();
-        $produits = Product::findAll();
+
+        $produits = Category::productJoinCategory();
         include(VIEWS . 'app/gestionProduit.php');
     }
 
     public static function modifierProduit()
     {   
+        $produits = Category::productJoinCategory();
+
         //*ici on vérifier que notre GET['id'] n'est pas vide afin de récupérer notre produit
         if(!empty($_GET['id'])){
             //*je récupère mon produit grâce a son id
@@ -164,6 +168,8 @@ class AppController
 
     public static function vueProduit()
     {
+        $produits = Category::productJoinCategory1();
+
         if(isset($_GET['id']))
         {   
             //*techniquement $_GET['id'] est un string si on veut être rigoureux on convertit se string en integer dans notre tableau car l'id est un int
@@ -175,6 +181,7 @@ class AppController
 
     public static function addCart()
     {
+        Verif::admin();
         if(!empty($_GET['id']))
         {
             $id = $_GET['id'];
@@ -258,5 +265,99 @@ class AppController
             exit;
     }
 
+    public static function addCategory()
+    {
+        Verif::admin();
+        $findName = Category::findByName(['name' => $_POST['name']]);
+
+        if (!empty($_POST)) {
+            $error = [];
+            if (empty($_POST['name'])) {
+                $error['name'] = "le champs name est obligatoire";
+            } elseif (!$findName) {
+
+                Category::addCategory(['name' => $_POST['name']]);
+
+                $_SESSION['messages']['success'][] = 'La catégorie a bien été ajouté';
+
+                header('location:' . BASE . 'produit/gestioncategory');
+                exit();
+            } else {
+                $_SESSION['messages']['danger'][] = 'La catégorie choisie existe déjà sur le site, veuillez entrez un nom différent !';
+            }
+        }
+
+        include(VIEWS . "app/ajoutCategorie.php");
+    }
+
+
     
+
+
+    public static function gestionCategory()
+    {
+        Verif::admin();
+        $categories = Category::findAllCategory();
+    
+        include(VIEWS."app/gestionCategorie.php" ) ;
+    }
+
+    public static function deleteCategory()
+    {
+        if(!empty($_GET['id']))
+        {
+            Category::deleteCategory([
+                'id_category' => $_GET['id']
+            ]);
+            $_SESSION['messages']['success'][] = 'La Catégorie a bien été supprimé';
+        }
+    
+        header('location:' . BASE . 'produit/gestioncategory');
+        exit;
+    }
+
+    public static function modifierCategory()
+    {
+        //*ici on vérifier que notre GET['id'] n'est pas vide afin de récupérer notre produit
+        if(!empty($_GET['id'])){
+            //*je récupère mon produit grâce a son id
+            $category = Category::findByIdCategory(['id_category' => $_GET['id']]);
+        }
+        else{
+            header('location:' . BASE . 'produit/gestioncategory');
+            exit();
+        }
+        //*si l'utilisateur a cliqué sur modifier alors je rentre dans les accolades
+        if(!empty($_POST))
+        {
+            //*création d'un tableau d'erreur vide
+            $error = [];
+            foreach($_POST as $indice => $valeur)
+            {
+                if(empty($valeur))
+                {
+                    $error[$indice] = "le champs $indice est obligatoire";
+                }
+            }
+            //* s'il y a pas d'erreur on fait notre traitement
+                if(!$error)
+                {
+                    
+                    Category::updateCategory([
+                        'name' => $_POST['name'],
+                        'id_category' => $_GET['id']
+                    ]);
+                    $_SESSION['messages']['success'][] = 'La Catégorie a bien été modifié';
+
+                    header('location:' . BASE . 'produit/gestioncategory');
+                    exit();
+                }
+            
+
+        }
+    
+     include(VIEWS."app/modifierCategorie.php" ) ;
+    }
 }
+
+

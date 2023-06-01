@@ -25,7 +25,7 @@
         <div style="height:300px;">
             <img src="<?= UPLOAD . $produit['image']; ?>" alt="" class="rounded-top" style="object-fit:cover;width:100%;height:100%;">
         </div>
-        <div class="card-header"><?= $produit['category']; ?></div>
+        <div class="card-header"><?= $produit['id_category']; ?></div>
         <div class="card-body">
             <h4 class="card-title"><?= $produit['name']; ?></h4>
             <p class="card-text text-end h3"><?= $produit['price']; ?>€</p>

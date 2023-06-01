@@ -1,15 +1,10 @@
 <?php include(VIEWS . '_partials/header.php'); ?>
 
 <?php 
-// if(isset($produit)){
-//      echo '<pre>';
-//     var_dump($produit);
-//     echo'</pre>';
-// }
-// echo '<pre>';
-// var_dump($_POST);
-// echo'</pre>';
-   
+echo '<pre>';
+var_dump($category);
+echo'</pre>';
+
 
 ?>
 <h1 class="text-center">Modifier Produit</h1>
@@ -26,9 +21,9 @@
         <div class="form-group">
         <label for="category" class="form-label mt-4">Categorie</label>
         <select class="form-select" id="category" name="category">
-            <option <?= (isset($produit['category']) && $produit['category'] == 'T-shirt')? 'selected' : ''; ?>>T-shirt</option>
-            <option <?= (isset($produit['category']) && $produit['category'] == 'Chaussures')? 'selected' : ''; ?>>Chaussures</option>
-            <option <?= (isset($produit['category']) && $produit['category'] == 'Pantalons')? 'selected' : ''; ?>>Pantalons</option>
+        <?php foreach($produits as $produit): ?>
+                        <option <?= (isset($produit['category']) && $produit['category'] == $produit['category']) ? 'selected' : ''; ?> value="<?= $produit['category']; ?>"><?= $produit['name']; ?></option>
+        <?php endforeach ?>
         </select>
         </div>
         <div class="form-group">

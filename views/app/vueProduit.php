@@ -8,7 +8,7 @@
             <img src="<?= UPLOAD . $produit['image']; ?>" alt="" class="img-fluid" style="border-radius: 10px; margin:auto; ">
         </div>
         <div class="card-body" style="background-color:burlywood; margin:15px; border-radius:5px;">
-            <h4 class="card-title" style="color: #007bff;">Categorie : <?= $produit["category"]; ?></h4>
+            <h4 class="card-title" style="color: #007bff;">Categorie : <?= $produits['category']; ?></h4>
             <hr>
             <h4 class="card-title" style="color: #007bff;">Description :</h4>
             <p class="card-text" style="color: #000;"><?= $produit['description']; ?></p>

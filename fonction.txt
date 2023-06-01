@@ -14,3 +14,20 @@
 -mailing(vérifier le compte /  )
 -stripe less go
 -vente flash
+
+
+
+faire un crud sur la catégorie , formulaire , personne créé une catégorie , id incrémenté (admin)
+formulaire avec input , afficher les cat dans un tableau , créér une ctégorie / modifier / supprimer 
+attaher au produit (catégories créés) : recuperer tt les catégories , boucle foreach (lister les catégories(values=id(catégorie))) 
+stocker dans le produit l'id de la ctégorie , varchar -> integer 0
+
+MODIFIER PARTOUT DS LE CODE LES CATEGORIES
+
+
+
+REQUETE POUR TRANSFORMER L'id qui vas s'afficher en varchar (nom de la cat)
+
+faire un inner join a la fin pour ajouter les catégories
+
+FACULTATIF / contraintes BDD

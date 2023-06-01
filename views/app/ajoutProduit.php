@@ -75,12 +75,13 @@
 
             <div class="form-group">
                 <label for="category" class="form-label mt-4">Categorie</label>
-                <select class="form-select" id="category" name="category">
-                    <option <?= (isset($_POST['category']) && $_POST['category'] == 'T-shirt')? 'selected' : ''; ?>>T-shirt</option>
-                    <option <?= (isset($_POST['category']) && $_POST['category'] == 'Chaussures')? 'selected' : ''; ?>>Chaussures</option>
-                    <option <?= (isset($_POST['category']) && $_POST['category'] == 'Pantalons')? 'selected' : ''; ?>>Pantalons</option>
+                <select class="form-select" id="category" name="id_category">
+                    <?php foreach($categories as $category): ?>
+                        <option <?= (isset($_POST['id_category']) && $_POST['id_category'] == $category['id_category']) ? 'selected' : ''; ?> value="<?= $category['id_category']; ?>"><?= $category['name']; ?></option>
+                    <?php endforeach ?>
                 </select>
             </div>
+
 
             <div class="form-group">
                 <label for="image" class="form-label mt-4">Image</label>

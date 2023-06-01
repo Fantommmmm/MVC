@@ -20,6 +20,15 @@
         <tbody>
         <?php foreach($produits as $produit): ?>
 
+<!-- <?php 
+ 
+ echo '<pre>';
+ var_dump($produit);
+ echo '</pre>';
+  
+
+  ?> -->
+
 
 <div class="modal fade" role="dialogue" tabindex="-1"  aria-hidden= "true" id="modalSupprimer <?= $produit['id_product']; ?>">
   <div class="modal-dialog" role="document">

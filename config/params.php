@@ -54,6 +54,10 @@ $routes = [
     '/cart/view'             => ['AppController', 'viewCart'],
     '/cart/remove'             => ['AppController', 'removeCart'],
     '/cart/delete'             => ['AppController', 'deleteCart'],
+    '/produit/category'             => ['AppController', 'addCategory'],
+    '/produit/gestioncategory'             => ['AppController', 'gestionCategory'],
+    '/produit/deletecategory'             => ['AppController', 'deleteCategory'],
+    '/produit/modifiercategory'             => ['AppController', 'modifierCategory'],
 
 
 
